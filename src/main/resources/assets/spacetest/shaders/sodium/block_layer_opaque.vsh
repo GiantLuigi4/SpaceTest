@@ -17,6 +17,7 @@ uniform int FaceIndex;
 uniform int FaceSize;
 uniform float StartRadius;
 uniform float RadiusRatio;
+uniform vec4 imm_ptl_ClippingEquation;
 
 vec3 planeToCube(int index, float u, float v)
 {
@@ -57,10 +58,15 @@ void main()
 	_vert_init();
 
 	// Transform the chunk-local vertex position into world model space
-	vec3 position = u_RegionOffset + _draw_translation + _vert_position;
-	position *= 2.0;
+	vec3 position = _vert_position * 2;
+	position += u_RegionOffset + _draw_translation * 2;
+//	position -= Corner;
 
-	//position -= Corner;
+//	if (_draw_translation.x > 16) position -= vec3(128, 0, 0);
+//	if (_draw_translation.z > 16) position -= vec3(0, 0, 128);
+//	if (_draw_translation.y > 16) position -= vec3(0, 128, 0);
+
+//	position -= Corner;
 
 	//float u = position.x / FaceSize;
 	//float v = position.z / FaceSize;
@@ -74,4 +80,6 @@ void main()
 	// Add the light color to the vertex color, and pass the texture coordinates to the fragment shader
 	v_Color = _vert_color * _sample_lightmap(u_LightTex, _vert_tex_light_coord);
 	v_TexCoord = _vert_tex_diffuse_coord;
+
+	gl_ClipDistance[0] = dot((u_ModelViewMatrix * vec4(position, 1.0)).xyz, imm_ptl_ClippingEquation.xyz) + imm_ptl_ClippingEquation.w;
 }

@@ -13,6 +13,7 @@ import melonslise.spacetest.SpaceTestCore;
 import melonslise.spacetest.mixin.ShaderChunkRendererAccessor;
 import melonslise.spacetest.planet.CubeFaceContext;
 import melonslise.spacetest.planet.PlanetProperties;
+import melonslise.spacetest.render.planet.sodium.debug.ExternalShaderLoader;
 import net.minecraft.util.Identifier;
 
 public class PlanetRegionChunkRenderer extends RegionChunkRenderer
@@ -52,8 +53,8 @@ public class PlanetRegionChunkRenderer extends RegionChunkRenderer
 	{
 		ShaderConstants constants = options.constants();
 
-		GlShader vertShader = ShaderLoader.loadShader(ShaderType.VERTEX, new Identifier(domain, path + ".vsh"), constants);
-		GlShader fragShader = ShaderLoader.loadShader(ShaderType.FRAGMENT, new Identifier(domain, path + ".fsh"), constants);
+		GlShader vertShader = ExternalShaderLoader.loadShader(ShaderType.VERTEX, new Identifier(domain, path + ".vsh"), constants);
+		GlShader fragShader = ExternalShaderLoader.loadShader(ShaderType.FRAGMENT, new Identifier(domain, path + ".fsh"), constants);
 
 		try
 		{

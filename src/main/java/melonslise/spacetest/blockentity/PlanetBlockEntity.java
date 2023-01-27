@@ -30,7 +30,7 @@ public class PlanetBlockEntity extends BlockEntity
 
 	public void placed(BlockPos pos, LivingEntity placer)
 	{
-		this.planetProps = new BasicPlanetProperties(new Vector3d(pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d), ChunkSectionPos.from(pos.withY(placer.world.getBottomY())), 1, 62 - placer.world.getBottomY());
+		this.planetProps = new BasicPlanetProperties(new Vector3d(pos.getX() + 0.5d, pos.getY() + 0.5d, pos.getZ() + 0.5d), ChunkSectionPos.from(pos.withY(placer.world.getBottomY())), 4, 62 - placer.world.getBottomY());
 
 		if(placer instanceof ServerPlayerEntity player)
 		{

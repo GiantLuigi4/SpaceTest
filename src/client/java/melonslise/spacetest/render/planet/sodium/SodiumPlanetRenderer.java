@@ -20,6 +20,7 @@ import net.minecraft.util.math.ChunkSectionPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import qouteall.imm_ptl.core.ClientWorldLoader;
 
 import java.lang.reflect.InvocationTargetException;
@@ -49,7 +50,7 @@ public class SodiumPlanetRenderer implements PlanetRenderer
 			ChunkCameraContext camCtx = new ChunkCameraContext(camPos.x, camPos.y, camPos.z);
 
 			Matrix4f modelView = new Matrix4f(SpaceTestClient.modelViewMat);
-			modelView.translate(0.0f, 1.0f, 0.0f);
+			modelView.translate(0.0f, 0.0f, 0.0f);
 			//modelView.translate((float) -this.planetProps.getPosition().x, (float) -this.planetProps.getPosition().y, (float) -this.planetProps.getPosition().z);
 			//modelView.translate((float) this.planetProps.getPosition().x, -50.0f, (float) this.planetProps.getPosition().z);
 
@@ -94,6 +95,7 @@ public class SodiumPlanetRenderer implements PlanetRenderer
 						pass.endDrawing();
 					}
 				}
+				renderer.delete();
 			}
 			catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e)
 			{

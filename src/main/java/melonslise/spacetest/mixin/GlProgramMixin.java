@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 import java.util.function.IntFunction;
 
-@Mixin(GlProgram.class)
+@Mixin(value = GlProgram.class, remap = false)
 public abstract class GlProgramMixin
 {
 	/**
